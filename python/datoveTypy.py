@@ -9,10 +9,10 @@ list = ["Hello", "world"]
 tuple = ("Hello", "world")
 
 slovnik = {
-  "brand": "Ford",
+  "znacka": "Ford",
   "model": "Mustang",
-  "year": 1964
+  "rok": 1964
 }
 
 komplex = complex(1, 2)
-range = range(5)
+radius = range(5)
