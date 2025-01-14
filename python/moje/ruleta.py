@@ -33,26 +33,26 @@ def print_roulette():
 |{g}    {a}+----+----+----+----+----+----+----+----+----+----+----+----+
 |{colorize(00)}|{colorize(1)}|{colorize(4)}|{colorize(7)}|{colorize(10)}|{colorize(13)}|{colorize(16)}|{colorize(19)}|{colorize(22)}|{colorize(25)}|{colorize(28)}|{colorize(31)}|{colorize(34)}|
 +----+---------+---------+---------+---------+---------+---------+ 
-     |   1-18  |  EVEN   |{b}   RED   {a}|{r}  BLACK  {a}|   ODD   |  19-36  |
+     |   1-18  |  EVEN   |{r}   RED   {a}|{b}  BLACK  {a}|   ODD   |  19-36  |
      +---------+---------+---------+---------+---------+---------+     
 """)
 
 def print_money():
     print("You have", money, "money.")
 
-def play(entered_bet, entered_bet_type, money):
-     money = money - bet
-     def spin():
-          number = random.choice(black + red + zero)
-          return number
+def play(bets, money):
+     total_bet = sum(bet for bet, bet_type in bets)
+     if total_bet > money:
+          print("You don't have enough money for these bets.")
+          return money
 
+     money -= total_bet
+     number = random.choice(black + red + zero)
 
      if number in black:
           color = "black"
-
      elif number in red:
           color = "red"
-
      else:
           color = "green"
 
@@ -73,99 +73,64 @@ def play(entered_bet, entered_bet_type, money):
                twelve = "2nd 12"
           else:
                twelve = "3rd 12"
-     
      else:
           odd_even = False
           radius = False
           twelve = False
 
-
-     if entered_bet_type == "red" or entered_bet_type == "black":
-          if entered_bet_type == color:
-               print("You won.")
-               entered_bet = entered_bet * 2
-               money += entered_bet
-               print("The number is", number, "and the color is", color)
-               return money
-
+     for bet, entered_bet_type in bets:
+          if entered_bet_type == "red" or entered_bet_type == "black":
+               if entered_bet_type == color:
+                    print("You won.")
+                    money += bet * 2
+               else:
+                    print("You lost.")
+          elif entered_bet_type == "odd" or entered_bet_type == "even":
+               if entered_bet_type == odd_even:
+                    print("You won.")
+                    money += bet * 2
+               else:
+                    print("You lost.")
+          elif entered_bet_type == "1-18" or entered_bet_type == "19-36":
+               if entered_bet_type == radius:
+                    print("You won.")
+                    money += bet * 2
+               else:
+                    print("You lost.")
+          elif entered_bet_type == "1st 12" or entered_bet_type == "2nd 12" or entered_bet_type == "3rd 12":
+               if entered_bet_type == twelve:
+                    print("You won.")
+                    money += bet * 3
+               else:
+                    print("You lost.")
+          elif entered_bet_type == "0" or entered_bet_type == "00":
+               if entered_bet_type == number:
+                    print("You won.")
+                    money += bet * 36
+               else:
+                    print("You lost.")
+          elif entered_bet_type.isdigit() and int(entered_bet_type) in range(1, 37):
+               if int(entered_bet_type) == number:
+                    print("You won.")
+                    money += bet * 36
+               else:
+                    print("You lost.")
           else:
-               print("You lost.")  
-               print("The number is", number, "and the color is", color)
-               return money
+               print("Invalid bet type.")
 
-     elif entered_bet_type == "odd" or entered_bet_type == "even":
-          if entered_bet_type == odd_even:
-               print("You won.")
-               entered_bet = entered_bet * 2
-               money += entered_bet 
-               print("The number is", number, "and the color is", color)
-               return money
-
-          else:
-               print("You lost.")
-               print("The number is", number, "and the color is", color)
-               return money
-
-     elif entered_bet_type == "1-18" or entered_bet_type == "19-36":
-          if entered_bet_type == radius:
-               print("You won.")
-               entered_bet = entered_bet * 2
-               money += entered_bet 
-               print("The number is", number, "and the color is", color)
-               return money
-          else:
-               print("You lost.") 
-               print("The number is", number, "and the color is", color)
-               return money   
-
-     elif entered_bet_type == "1st 12" or entered_bet_type == "2nd 12" or entered_bet_type == "3rd 12":
-          if entered_bet_type == twelve:
-               print("You won.")
-               entered_bet = entered_bet * 3
-               money += entered_bet 
-               print("The number is", number, "and the color is", color)
-               return money
-          else:
-               print("You lost.")
-               print("The number is", number, "and the color is", color)
-               return money
-     
-     elif entered_bet_type == "0" or entered_bet_type == "00":
-          if entered_bet_type == number:
-               print("You won.")
-               entered_bet = entered_bet * 36
-               money += entered_bet 
-               print("The number is", number, "and the color is", color)
-               return money
-          else:
-               print("You lost.")
-               print("The number is", number, "and the color is", color)
-               return money
-
-     elif entered_bet_type.isdigit() and entered_bet in range(1, 37):
-          if entered_bet_type.isdigit() and int(entered_bet_type) == number:
-               print("You won.")
-               entered_bet = entered_bet * 36
-               money += entered_bet
-               print("The number is", number, "and the color is", color) 
-               return money
-          else:
-               print("You lost.")
-               print("The number is", number, "and the color is", color)
-               return money
-     
-     else:
-          print("Invalid bet type.")
+     print("The number is", number, "and the color is", color)
+     return money
      
 def place_bet():
-     bet = int(input("Enter your bet: "))
+     bets = []
+     while True:
+          bet = int(input("Enter your bet: "))
+          if bet > money:
+               print("You don't have enough money.")
+               continue
 
-     if bet > money:
-          print("You don't have enough money.")
-          place_bet()
-
-     print("Bet types: ")
-     print("""
+          print("Bet types: ")
+          print("""
 1. red("red"), black("black")
 2. odd("odd"), even("even")
 3. 1-18("1-18"), 19-36("19-36")
@@ -173,17 +138,23 @@ def place_bet():
 5. number
 6. zero("0")
 """)
-     bet_type = input("Enter your bet type: ")
-     if bet_type == "number":
-          bet_type = int(input("Enter number: "))
+          bet_type = input("Enter your bet type: ")
+          if bet_type == "number":
+               bet_type = int(input("Enter number: "))
 
-     return bet, bet_type
+          bets.append((bet, bet_type))
+
+          more_bets = input("Do you want to place another bet? (y/n): ").strip().lower()
+          if more_bets != 'y':
+               break
+
+     return bets
 
 
 while money > 0:
      print_roulette()
      print_money()
-     bet, bet_type = place_bet()
-     money = play(bet, bet_type, money)
+     bets = place_bet()
+     money = play(bets, money)
      input("Press enter to play again.")
      os.system("cls")
