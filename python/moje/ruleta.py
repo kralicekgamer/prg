@@ -82,7 +82,7 @@ def play(bets, money):
           return money
 
      money -= total_bet
-     number = random.choice(black + red + zero)
+     number = str(random.choice(black + red + zero))
 
      if number in black:
           color = "black"
@@ -161,8 +161,8 @@ def play(bets, money):
                     money += bet * 36
                else:
                     print("You lost.")
-          elif entered_bet_type.isdigit() and int(entered_bet_type) in range(1, 37):
-               if int(entered_bet_type) == number:
+          elif entered_bet_type and entered_bet_type in range(1, 37):
+               if entered_bet_type == number:
                     print("You won.")
                     money += bet * 36
                else:
