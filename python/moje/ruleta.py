@@ -12,14 +12,16 @@ b = "\033[40m"
 g = "\033[42m"
 a = "\033[0m"
 
+"""Print roulette table"""
 def print_roulette():
      def colorize(number):
           if number in black:
                return f"{b} {number:2} {a}"
           elif number in red:
                return f"{r} {number:2} {a}"
-          else:
+          elif number in zero:
                return f"{g} {number:2} {a}"
+               
 
      print(f"""
      +-------------------+-------------------+-------------------+
@@ -35,9 +37,44 @@ def print_roulette():
      +---------+---------+---------+---------+---------+---------+    
 """)
 
+"""Print money that you have."""
 def print_money():
     print("You have", money, "money.")
 
+"""Place bet and bet type"""
+def place_bet():
+     bets = []
+     while True:
+          print("---------------------------------------------------------------------------------")
+          bet = int(input("Enter your bet: "))
+          if bet > money:
+               print("You don't have enough money.")
+               place_bet()
+
+          print("""
+Bet types: 
+1. red("red"), black("black")
+2. odd("odd"), even("even")
+3. 1-18("1-18"), 19-36("19-36")
+4. 1st 12("1st 12"), 2nd 12("2nd 12"), 3rd 12("3rd 12")
+5. 1st 2:1 ("1st 2:1"), 2nd 2:1 ("2nd 2:1"), 3rd 2:1 ("3rd 2:1")
+5. number
+6. zero("0")
+""")
+          bet_type = input("Enter your bet type: ")
+          if bet_type == "number":
+               bet_type = int(input("Enter number: "))
+
+          bets.append((bet, bet_type))
+
+          print("---------------------------------------------------------------------------------")
+          more_bets = input("Do you want to place another bet? (y/n): ").strip().lower()
+          if more_bets != 'y':
+               break
+     
+     return bets
+
+"""Spin"""
 def play(bets, money):
      total_bet = sum(bet for bet, bet_type in bets)
      if total_bet > money:
@@ -134,44 +171,15 @@ def play(bets, money):
                print("Invalid bet type.")
 
      print("The number is", number, "and the color is", color)
+     print("---------------------------------------------------------------------------------")
      return money
-
-     
-def place_bet():
-     bets = []
-     while True:
-          bet = int(input("Enter your bet: "))
-          if bet > money:
-               print("You don't have enough money.")
-               continue
-
-          print("Bet types: ")
-          print("""
-1. red("red"), black("black")
-2. odd("odd"), even("even")
-3. 1-18("1-18"), 19-36("19-36")
-4. 1st 12("1st 12"), 2nd 12("2nd 12"), 3rd 12("3rd 12")
-5. 1st 2:1 ("1st 2:1"), 2nd 2:1 ("2nd 2:1"), 3rd 2:1 ("3rd 2:1")
-5. number
-6. zero("0")
-""")
-          bet_type = input("Enter your bet type: ")
-          if bet_type == "number":
-               bet_type = int(input("Enter number: "))
-
-          bets.append((bet, bet_type))
-
-          more_bets = input("Do you want to place another bet? (y/n): ").strip().lower()
-          if more_bets != 'y':
-               break
-
-     return bets
 
 
 while money > 0:
      print_roulette()
      print_money()
      bets = place_bet()
+     print("---------------------------------------------------------------------------------")
      money = play(bets, money)
      input("Press enter to play again.")
      os.system("cls")
