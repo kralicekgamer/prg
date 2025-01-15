@@ -3,7 +3,7 @@ import os
 
 black = [2, 4, 6, 8, 10, 11, 13, 15, 17, 20, 22, 24, 26, 28, 29, 31, 33, 35]
 red = [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36]
-zero = [0, 00]
+zero = [0, "00"]
 
 money = 100
 
@@ -31,7 +31,7 @@ def print_roulette():
 |{g}    {a}+----+----+----+----+----+----+----+----+----+----+----+----+----+
 +----|{colorize(2)}|{colorize(5)}|{colorize(8)}|{colorize(11)}|{colorize(14)}|{colorize(17)}|{colorize(20)}|{colorize(23)}|{colorize(26)}|{colorize(29)}|{colorize(32)}|{colorize(35)}|2nd | 
 |{g}    {a}+----+----+----+----+----+----+----+----+----+----+----+----+----+
-|{colorize(00)}|{colorize(1)}|{colorize(4)}|{colorize(7)}|{colorize(10)}|{colorize(13)}|{colorize(16)}|{colorize(19)}|{colorize(22)}|{colorize(25)}|{colorize(28)}|{colorize(31)}|{colorize(34)}|3rd |
+|{colorize("00")}|{colorize(1)}|{colorize(4)}|{colorize(7)}|{colorize(10)}|{colorize(13)}|{colorize(16)}|{colorize(19)}|{colorize(22)}|{colorize(25)}|{colorize(28)}|{colorize(31)}|{colorize(34)}|3rd |
 +----+---------+---------+---------+---------+---------+---------+----+ 
      |   1-18  |  EVEN   |{r}   RED   {a}|{b}  BLACK  {a}|   ODD   |  19-36  |
      +---------+---------+---------+---------+---------+---------+    
