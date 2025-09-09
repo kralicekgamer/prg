@@ -17,7 +17,7 @@ d = 0
 down = True
 
 lines = []
-Text File.txtText File.txt
+
 while running:
     screen.fill((30, 30, 30))
 
