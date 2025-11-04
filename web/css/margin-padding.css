@@ -1,0 +1,23 @@
+body {
+    background-color: #222;
+}
+
+h1 {
+    color: white;
+    border-bottom: dashed 10px red;
+    border-left: solid 10px red;
+    border-right: solid 10px red;
+    border-top: solid 5px red;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background: linear-gradient(#0040ff, #ff0000);
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 50px;
+}
+
+p {
+    color: white;
+}
