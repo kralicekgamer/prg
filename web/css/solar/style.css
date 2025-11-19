@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1a1a2e;
+}
+
+
+.sun {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150px;
+    height: 150px;
+    background-color: gold;
+    box-shadow: 0 0 100px gold;
+    border-radius: 50%;
+}
+
+.mercur-orbit {
+    height: 400px;
+    width: 400px;
+    animation: orbit 10s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.mercur {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(-45deg, rgb(72, 27, 34), #000 60%);
+    border-radius: 50%;
+}
+
+.earth-orbit {
+    width: 700px;
+    height: 600px;
+    animation: orbit 10s linear infinite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.earth {
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(-45deg, rgb(3, 6, 73), black 40%);
+    border-radius: 50%;
+}
+
+@keyframes orbit {
+    from {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
