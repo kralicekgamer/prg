@@ -1,0 +1,21 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,html {
+    background-color: #222;
+    color: white;
+}
+
+
+h1 {
+    background-color: blue;
+    color: white;
+    padding: 1em;
+}
+
+button {
+    cursor: pointer;
+}
