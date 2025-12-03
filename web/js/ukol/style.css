@@ -1,0 +1,17 @@
+.white {
+    background-color: white;
+    height: 20px;
+    width: 20px;
+}
+
+.black {
+    background-color: black;
+    height: 20px;
+    width: 20px;
+}
+
+#sachovnice {
+    display: grid;
+    grid-template-columns: repeat(var(--size, 8), 20px);
+    grid-template-rows: repeat(var(--size, 8), 20px);
+}
