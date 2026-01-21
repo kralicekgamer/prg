@@ -174,7 +174,7 @@ def play(bets, money):
      print("---------------------------------------------------------------------------------")
      return money
 
-
+# main loop
 while money > 0:
      print_roulette()
      print_money()
