@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
 
 class FastFood(ABC):
-    
     @abstractmethod
     def accept_order(self, what, deliver_number):
         pass

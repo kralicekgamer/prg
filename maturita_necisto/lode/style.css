@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px solid red;
+}
+
+body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px;
+}
+
+td {
+    height: 20px;
+    width: 20px;
+    border: 1px solid black;
+}
+
+aside {
+    width: 100px;
+    margin: 5px;
+}
+
+div {
+    width: 100px;
+}
+
+li { 
+    list-style-type: none;
+}
+
+main {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+}
+
+.x {
+    background-color: black;
+}
+
