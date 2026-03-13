@@ -1,7 +1,5 @@
 from pycipher import Caesar, Vigenere, Rot13
 
-from pycipher import Caesar, Vigenere, Rot13
-
 encrypt_caesar = lambda key, text: Caesar(key).encipher(text)
 encrypt_vigenere = lambda password, text: Vigenere(password).encipher(text)
 encrypt_rot13 = lambda text: Rot13().encipher(text)
