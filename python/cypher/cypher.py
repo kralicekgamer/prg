@@ -9,7 +9,7 @@ decrypt_vigenere = lambda password, cypher: Vigenere(password).decipher(cypher)
 decrypt_rot13 = lambda cypher: Rot13().decipher(cypher)
 
 
-test_data = "ILOVEBUBLAS"
+test_data = input("")
 
 c_key = 3
 
