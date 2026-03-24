@@ -24,9 +24,35 @@
             document.write(Math.max(a, b, c))
         </script>
     </p>
+
     <p>
         <script>
             document.write(3.5e-6)
+        </script>
+    </p>
+
+    <p>
+        <script>
+            let numbers = [3,15,42,5,12,7]
+            let max = 0
+
+            for (n in numbers) {
+                if (numbers[n] > max ){
+                    max = numbers[n]
+                }
+            }
+
+            document.write(max)
+        </script>
+    </p>
+
+    <p>
+        <script>
+            let nums = [3,15,42,5,12,7]
+
+            nums.sort(function(a, b){return a-b});
+
+            document.write(nums[nums.length-2])
         </script>
     </p>
 </body>
