@@ -3,14 +3,13 @@ class Query:
         self.original_data = data
         self.operations = []
 
-
-
     def filter(self, field, operator, value):
         allowed_ops = ['>=', '<=', '!=']
         if operator not in allowed_ops:
             raise ValueError("Operator neni povolen")
 
         def op(record):
+            # kdyz neexistuje uzivatel ma smulu
             if field not in record:
                 return False
             if operator == ">=":
@@ -25,7 +24,9 @@ class Query:
 
 
     def sort_by(self, field, descending=False):
+        # idk kazdy ma rad trideni
         def op(data):
+            # pokud field neexistuje pad, linej impementovat
             return sorted(data, key=lambda x: x[field], reverse=descending)
 
         self.operations.append(("sort", op))
@@ -33,6 +34,7 @@ class Query:
 
 
     def limit(self, count):
+        # vezmes n zbytek dej pryc
         def op(data):
             return data[:count]
 
@@ -41,6 +43,7 @@ class Query:
 
 
     def distinct(self, field):
+        # deduplikace pokud vidime stejny mazeme
         def op(data):
             seen = set()
             result = []
