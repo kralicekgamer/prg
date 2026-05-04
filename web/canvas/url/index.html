@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03 – Kruh řízený query stringem</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1a2e;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            color: #eee;
+            gap: 12px;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            color: #a0c4ff;
+        }
+
+        /* Nápověda – zobrazuje aktuální URL parametry */
+        .hint {
+            font-size: 0.85rem;
+            color: #8899aa;
+            max-width: 620px;
+            text-align: center;
+        }
+
+        .hint code {
+            background: #223;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #f0c040;
+        }
+
+        #platno {
+            background-color: #16213e;
+            border: 2px solid #4a90d9;
+            border-radius: 8px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>03 – Barva a poloha kruhu z URL</h1>
+
+    <p class="hint">
+        Vyzkoušej: <code>03-color.html?color=red&amp;x=100&amp;y=100&amp;radius=50
+    </p>
+
+    <canvas id="platno" width="600" height="400"></canvas>
+
+    <script>
+        const platno = document.getElementById("platno");
+        const ctx = platno.getContext("2d");
+
+        // ── Čtení parametrů z URL (query string) ──────────────────────────────
+        // URLSearchParams umožňuje snadno číst parametry za otazníkem v URL
+        const params = new URLSearchParams(window.location.search);
+
+        // Načteme hodnoty z URL; pokud parametr chybí, použijeme výchozí hodnotu
+        const x      = Number(params.get("x"))      || 300;
+        const y      = Number(params.get("y"))      || 200;
+        const radius = Number(params.get("radius")) || 50;
+        const color  = params.get("color")          || "royalblue";
+
+        // ── Vykreslení kruhu ───────────────────────────────────────────────────
+        function nakresliKruh(ctx, x, y, radius, color) {
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, Math.PI * 2);
+            ctx.fillStyle = color;
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        nakresliKruh(ctx, x, y, radius, color);
+
+        // Informační popisek pod kruhem
+        ctx.fillStyle = "#8899aa";
+        ctx.font = "14px Arial";
+        ctx.fillText(`x=${x}  y=${y}  radius=${radius}  color=${color}`, 10, platno.height - 10);
+    </script>
+
+</body>
+</html>
+ </code>
